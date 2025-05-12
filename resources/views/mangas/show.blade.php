@@ -9,15 +9,16 @@
     <p>
         {{ $manga->type->name }} - {{ $manga->type->description }}
     </p>
-    {{-- <p>
-        @if (count($manga->technologies) > 0)
-            @foreach ($manga->technologies as $technology)
-                <span class="badge" style="background-color: {{ $technology->color }}">{{ $technology->name }}</span>
+
+    <p>
+        @if (count($manga->languages) > 0)
+            Lingue disponibili:
+            @foreach ($manga->languages as $language)
+                <span>{{ $language->code }}</span>
             @endforeach
         @endif
+    </p>
 
-
-    </p> --}}
     <p>
         {{ $manga->description }}
     </p>
@@ -28,6 +29,8 @@
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Elimina
         </button>
+
+        <a href="{{ route('mangas.index') }}">Torna all'elenco principale</a>
     </div>
 
 

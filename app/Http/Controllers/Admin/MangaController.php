@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Language;
 use App\Models\Manga;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -25,7 +26,9 @@ class MangaController extends Controller
     {
         $types = Type::all();
 
-        return view("mangas.create", compact("types"));
+        $languages = Language::all();
+
+        return view("mangas.create", compact("types", "languages"));
     }
 
     /**
@@ -45,7 +48,7 @@ class MangaController extends Controller
 
         $newManga->save();
 
-        // $newManga->technologies()->attach($data['technologies']);
+        $newManga->languages()->attach($data['languages']);
 
         return redirect()->route("mangas.show", $newManga);
     }
@@ -64,7 +67,8 @@ class MangaController extends Controller
     public function edit(Manga $manga)
     {
         $types = Type::all();
-        return view("mangas.edit", compact('manga', 'types'));
+        $languages = Language::all();
+        return view("mangas.edit", compact('manga', 'types', 'languages'));
     }
 
     /**
@@ -80,9 +84,13 @@ class MangaController extends Controller
         $manga->type_id = $data['type_id'];
         $manga->description = $data['description'];
 
-        $manga->save();
+        $manga->update();
 
-        // $manga->technologies()->attach($data['technologies']);
+        if ($request->has('languages')) {
+            $manga->languages()->sync($data['languages']);
+        } else {
+            $manga->languages()->detach();
+        }
 
         return redirect()->route("mangas.show", $manga);
     }
@@ -92,6 +100,7 @@ class MangaController extends Controller
      */
     public function destroy(Manga $manga)
     {
+        $manga->languages()->detach();
         $manga->delete();
         return redirect()->route("mangas.index");
     }

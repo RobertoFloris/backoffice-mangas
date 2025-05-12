@@ -29,15 +29,14 @@
             </select>
         </div>
 
-        {{-- <div class="form-control mb-3 d-flex flex-wrap">
-            @foreach ($technologies as $technology)
+        <div class="form-control mb-3 d-flex flex-wrap">
+            @foreach ($languages as $language)
                 <div class="tag me-2">
-                    <input type="checkbox" name="technologies[]" value="{{ $technology->id }}"
-                        id="technology-{{ $technology->id }}">
-                    <label for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+                    <input type="checkbox" name="languages[]" value="{{ $language->id }}" id="language-{{ $language->id }}">
+                    <label for="language-{{ $language->id }}">{{ $language->name }}</label>
                 </div>
             @endforeach
-        </div> --}}
+        </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
