@@ -16,10 +16,6 @@
             <label for="author" class="form-label">Autore</label>
             <input type="text" class="form-control" id="author" name="author" value="{{ $manga->author }}">
 
-            <div class="mb-3">
-                <label for="type" class="form-label">Genere</label>
-                <input type="text" class="form-control" id="type" name="type" value="{{ $manga->type }}">
-            </div>
 
             <div class="mb-3">
                 <label for="year_of_publication" class="form-label">Anno di pubblicazione</label>
@@ -27,14 +23,15 @@
                     value="{{ $manga->year_of_publication }}">
             </div>
 
-            {{-- <div class="mb-3">
-            <label for="type_id" class="form-label">Categoria</label>
-            <select class="form-control" id="type_id" name="type_id">
-                @foreach ($types as $type)
-                    <option value="{{ $type->id }}">{{ $type->name }}</option>
-                @endforeach
-            </select>
-        </div> --}}
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Categoria</label>
+                <select class="form-control" id="type_id" name="type_id">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ $manga->type_id == $type->id ? 'selected' : '' }}>
+                            {{ $type->name }} - {{ $type->description }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             {{-- <div class="form-control mb-3 d-flex flex-wrap">
             @foreach ($technologies as $technology)

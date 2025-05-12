@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Manga;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class MangaController extends Controller
@@ -22,7 +23,9 @@ class MangaController extends Controller
      */
     public function create()
     {
-        return view("mangas.create");
+        $types = Type::all();
+
+        return view("mangas.create", compact("types"));
     }
 
     /**
@@ -36,9 +39,8 @@ class MangaController extends Controller
 
         $newManga->title = $data['title'];
         $newManga->author = $data['author'];
-        $newManga->type = $data['type'];
         $newManga->year_of_publication = $data['year_of_publication'];
-        // $newManga->type_id = $data['type_id'];
+        $newManga->type_id = $data['type_id'];
         $newManga->description = $data['description'];
 
         $newManga->save();
@@ -61,7 +63,8 @@ class MangaController extends Controller
      */
     public function edit(Manga $manga)
     {
-        return view("mangas.edit", compact('manga'));
+        $types = Type::all();
+        return view("mangas.edit", compact('manga', 'types'));
     }
 
     /**
@@ -73,9 +76,8 @@ class MangaController extends Controller
 
         $manga->title = $data['title'];
         $manga->author = $data['author'];
-        $manga->type = $data['type'];
         $manga->year_of_publication = $data['year_of_publication'];
-        // $manga->type_id = $data['type_id'];
+        $manga->type_id = $data['type_id'];
         $manga->description = $data['description'];
 
         $manga->save();

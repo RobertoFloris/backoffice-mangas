@@ -20,7 +20,6 @@ class MangasTableSeeder extends Seeder
 
             $newManga->title = $faker->sentence();
             $newManga->author = $faker->name();
-            $newManga->type = $faker->word();
             $newManga->year_of_publication = $faker->year();
             $newManga->description = $faker->paragraph(12);
 

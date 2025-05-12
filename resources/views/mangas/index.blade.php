@@ -1,6 +1,6 @@
 @extends('layouts.mangas')
 
-@section('title', 'mangas')
+@section('title', 'Mangas')
 
 @section('content')
     <table class="table table-striped">
@@ -8,7 +8,6 @@
             <tr>
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
-                <th scope="col">Type</th>
                 <th scope="col">Link</th>
             </tr>
         </thead>
@@ -17,7 +16,6 @@
                 <tr>
                     <th scope="row">{{ $manga->title }}</th>
                     <td>{{ $manga->author }}</td>
-                    <td>{{ $manga->type }}</td>
                     <td>
                         <a href="{{ route('mangas.show', $manga) }}">Visualizza</a>
                     </td>

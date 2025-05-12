@@ -16,23 +16,18 @@
         </div>
 
         <div class="mb-3">
-            <label for="type" class="form-label">Genere</label>
-            <input type="text" class="form-control" id="type" name="type">
-        </div>
-
-        <div class="mb-3">
             <label for="year_of_publication" class="form-label">Anno di pubblicazione</label>
             <input type="number" class="form-control" id="year_of_publication" name="year_of_publication">
         </div>
 
-        {{-- <div class="mb-3">
+        <div class="mb-3">
             <label for="type_id" class="form-label">Categoria</label>
             <select class="form-control" id="type_id" name="type_id">
                 @foreach ($types as $type)
-                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    <option value="{{ $type->id }}">{{ $type->name }} - {{ $type->description }}</option>
                 @endforeach
             </select>
-        </div> --}}
+        </div>
 
         {{-- <div class="form-control mb-3 d-flex flex-wrap">
             @foreach ($technologies as $technology)
@@ -45,7 +40,7 @@
         </div> --}}
 
         <div class="mb-3">
-            <label for="description" class="form-label">descrizione</label>
+            <label for="description" class="form-label">Descrizione</label>
             <textarea class="form-control" id="description" name="description"></textarea>
         </div>
 

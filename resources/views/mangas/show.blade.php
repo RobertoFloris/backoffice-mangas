@@ -6,9 +6,9 @@
     <h2>
         {{ $manga->author }}
     </h2>
-    {{-- <p>
-        {{ $manga->type->name }}
-    </p> --}}
+    <p>
+        {{ $manga->type->name }} - {{ $manga->type->description }}
+    </p>
     {{-- <p>
         @if (count($manga->technologies) > 0)
             @foreach ($manga->technologies as $technology)
