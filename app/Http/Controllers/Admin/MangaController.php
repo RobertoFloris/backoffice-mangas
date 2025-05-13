@@ -91,7 +91,9 @@ class MangaController extends Controller
         $manga->description = $data['description'];
 
         if (array_key_exists("image", $data)) {
-            Storage::delete($manga->image);
+            if ($manga->image) {
+                Storage::delete($manga->image);
+            }
             $img_url = Storage::putFile("mangas", $data['image']);
             $manga->image = $img_url;
         }

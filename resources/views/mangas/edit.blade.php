@@ -56,7 +56,7 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">descrizione</label>
-                <textarea class="form-control" id="description" name="description">{{ $manga->description }}></textarea>
+                <textarea class="form-control" id="description" name="description">{{ $manga->description }}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Modifica</button>
