@@ -3,6 +3,13 @@
 @section('title', $manga->title)
 
 @section('content')
+
+    @if ($manga->image)
+        <div id="post-image">
+            <img src="{{ asset('storage/' . $manga->image) }}" alt="copertina">
+        </div>
+    @endif
+
     <h2>
         {{ $manga->author }}
     </h2>

@@ -3,7 +3,7 @@
 @section('title', 'Aggiungi un manga')
 
 @section('content')
-    <form action="{{ route('mangas.store') }}" method="POST">
+    <form action="{{ route('mangas.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Titolo</label>
@@ -19,6 +19,8 @@
             <label for="year_of_publication" class="form-label">Anno di pubblicazione</label>
             <input type="number" class="form-control" id="year_of_publication" name="year_of_publication">
         </div>
+
+
 
         <div class="mb-3">
             <label for="type_id" class="form-label">Categoria</label>
@@ -36,6 +38,11 @@
                     <label for="language-{{ $language->id }}">{{ $language->name }}</label>
                 </div>
             @endforeach
+        </div>
+
+        <div class="form-control mb-3 d-flex flex-wrap gap-3">
+            <label for="image">Immagine di copertina</label>
+            <input id="image" type="file" name="image">
         </div>
 
         <div class="mb-3">

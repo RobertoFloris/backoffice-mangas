@@ -7,6 +7,7 @@ use App\Models\Language;
 use App\Models\Manga;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MangaController extends Controller
 {
@@ -46,6 +47,11 @@ class MangaController extends Controller
         $newManga->type_id = $data['type_id'];
         $newManga->description = $data['description'];
 
+        if (array_key_exists("image", $data)) {
+            $img_url = Storage::putFile("mangas", $data['image']);
+            $newManga->image = $img_url;
+        }
+
         $newManga->save();
 
         $newManga->languages()->attach($data['languages']);
@@ -84,6 +90,12 @@ class MangaController extends Controller
         $manga->type_id = $data['type_id'];
         $manga->description = $data['description'];
 
+        if (array_key_exists("image", $data)) {
+            Storage::delete($manga->image);
+            $img_url = Storage::putFile("mangas", $data['image']);
+            $manga->image = $img_url;
+        }
+
         $manga->update();
 
         if ($request->has('languages')) {
@@ -100,6 +112,9 @@ class MangaController extends Controller
      */
     public function destroy(Manga $manga)
     {
+        if ($manga->image) {
+            Storage::delete($manga->image);
+        }
         $manga->languages()->detach();
         $manga->delete();
         return redirect()->route("mangas.index");

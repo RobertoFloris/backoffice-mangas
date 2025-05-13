@@ -3,7 +3,7 @@
 @section('title', 'Modifica manga')
 
 @section('content')
-    <form action="{{ route('mangas.update', $manga) }}" method="POST">
+    <form action="{{ route('mangas.update', $manga) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -42,6 +42,16 @@
                         <label for="language-{{ $language->id }}">{{ $language->name }}</label>
                     </div>
                 @endforeach
+            </div>
+
+            <div class="form-control mb-3 d-flex flex-wrap gap-3">
+                <label for="image">Immagine di copertina</label>
+                <input id="image" type="file" name="image">
+                @if ($manga->image)
+                    <div id="post-image">
+                        <img class="img-fluid w-25" src="{{ asset('storage/' . $manga->image) }}" alt="copertina">
+                    </div>
+                @endif
             </div>
 
             <div class="mb-3">
