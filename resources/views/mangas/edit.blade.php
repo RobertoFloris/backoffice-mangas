@@ -25,7 +25,7 @@
 
             <div class="mb-3">
                 <label for="type_id" class="form-label">Categoria</label>
-                <select class="form-control" id="type_id" name="type_id">
+                <select class="form-select" id="type_id" name="type_id">
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}" {{ $manga->type_id == $type->id ? 'selected' : '' }}>
                             {{ $type->name }} - {{ $type->description }}</option>
