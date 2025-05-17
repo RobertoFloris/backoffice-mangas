@@ -4,43 +4,43 @@
 
 @section('content')
 
-    @if ($manga->image)
-        <div id="post-image">
-            <img src="{{ asset('storage/' . $manga->image) }}" alt="copertina">
-        </div>
-    @endif
-
-    <h2>
-        {{ $manga->author }}
-    </h2>
-    <p>
-        {{ $manga->type->name }} - {{ $manga->type->description }}
-    </p>
-
-    <p>
-        @if (count($manga->languages) > 0)
-            Lingue disponibili:
-            @foreach ($manga->languages as $language)
-                <span>{{ $language->code }}</span>
-            @endforeach
+    <div class="d-flex flex-wrap align-items-start gap-4">
+        @if ($manga->image)
+            <div id="post-image" style="max-width: 300px;">
+                <img src="{{ asset('storage/' . $manga->image) }}" alt="copertina" class="img-fluid rounded">
+            </div>
         @endif
-    </p>
 
-    <p>
-        {{ $manga->description }}
-    </p>
+        <div class="flex-grow-1">
+            <h2>{{ $manga->author }}</h2>
+            <p>
+                {{ $manga->type->name }} - {{ $manga->type->description }}
+            </p>
 
-    <div class="d-flex gap-3">
-        <a class="btn btn-secondary" href="{{ route('mangas.edit', $manga) }}">Modifica</a>
+            <p>
+                @if (count($manga->languages) > 0)
+                    Lingue disponibili:
+                    @foreach ($manga->languages as $language)
+                        <span>{{ $language->code }}</span>
+                    @endforeach
+                @endif
+            </p>
 
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Elimina
-        </button>
+            <p>{{ $manga->description }}</p>
 
-        <a href="{{ route('mangas.index') }}">Torna all'elenco principale</a>
+            <div class="d-flex gap-3 flex-wrap">
+                <a class="btn btn-secondary" href="{{ route('mangas.edit', $manga) }}">Modifica</a>
+
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Elimina
+                </button>
+
+                <a href="{{ route('mangas.index') }}" class="btn btn-outline-primary">Torna all'elenco principale</a>
+            </div>
+        </div>
     </div>
 
-
+    <!-- Modal per la conferma eliminazione -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

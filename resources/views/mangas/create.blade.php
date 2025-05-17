@@ -20,8 +20,6 @@
             <input type="number" class="form-control" id="year_of_publication" name="year_of_publication">
         </div>
 
-
-
         <div class="mb-3">
             <label for="type_id" class="form-label">Categoria</label>
             <select class="form-select" id="type_id" name="type_id">
