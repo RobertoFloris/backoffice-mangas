@@ -32,7 +32,7 @@ class MangaController extends Controller
                     $query->orderBy('year_of_publication', 'asc');
                     break;
                 case 'latest_added':
-                    $query->orderBy('id', 'asc');
+                    $query->orderBy('id', 'desc');
                     break;
             }
         } else {
