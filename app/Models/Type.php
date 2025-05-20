@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Type extends Model
 {
-    public function projects()
+    public function mangas()
     {
         return $this->hasMany(Manga::class);
     }
